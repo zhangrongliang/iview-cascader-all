@@ -2,12 +2,13 @@
 从一组相关联的数据集合中进行选择，常用于省市区、公司级层、事务分类等。单选多选全选。
 
 # API
-| 属性 | 说明 | 类型  | 默认值 |
-|------- | ------- | -------   |
-| allToone | 是否开启子级全选 | Boolean  | false  |
-| oneToone | 是否开启每级单选 | Boolean  | false  |
-| data | 可选项的数据源，格式参照示例说明 | Array  |  []   |
-| placeholder | 输入框占位符 | String  | 请选择  |
+| 属性         | 说明           | 类型     | 默认值 |
+|------------ | -------------  | --------|-------|
+| allToone    | 是否开启子级全选 | Boolean  | false  |
+| oneToone    | 是否开启每级单选 | Boolean  | false  |
+| data        | 可选项的数据源   | Array    |  []    |
+| placeholder | 输入框占位符    | String    | 请选择  |
+
 
 更多参考[Cascader](https://www.iviewui.com/components/cascader)
 
