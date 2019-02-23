@@ -1,0 +1,24 @@
+{
+  "name": "iview-cascader-all",
+  "version": "1.0.0",
+  "description": "从一组相关联的数据集合中进行选择，常用于省市区、公司级层、事务分类等。单选多选全选。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zhangrongliang/iview-cascader-all.git"
+  },
+  "keywords": [
+    "iview",
+    "cascader",
+    "单选多选全选。"
+  ],
+  "author": "zhangrongliang@aliyun.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangrongliang/iview-cascader-all/issues"
+  },
+  "homepage": "https://github.com/zhangrongliang/iview-cascader-all#readme"
+}
