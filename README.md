@@ -10,6 +10,12 @@ data | 可选项的数据源，格式参照示例说明 | Array  |[]
 placeholder | 输入框占位符 | String  | 请选择
 
 
+| Tables   |      Are      |  Cool |
+|----------|:-------------:|------:|
+| col 1 is |  left-aligned | $1600 |
+| col 2 is |    centered   |   $12 |
+| col 3 is | right-aligned |    $1 |
+
 更多参考[Cascader](https://www.iviewui.com/components/cascader)
 
 ## 使用方法一：
