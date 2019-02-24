@@ -1,6 +1,6 @@
 {
   "name": "iview-cascader-all",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "从一组相关联的数据集合中进行选择，常用于省市区、公司级层、事务分类等。单选多选全选。",
   "main": "index.js",
   "scripts": {

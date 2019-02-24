@@ -18,7 +18,7 @@
             </li>
         </CheckboxGroup>
     </ul>
-    <casMultiPanel @handleGetSelected="selectedData" v-if="children.length && !destroy" :data="children.length && children" :componentId="componentId" :oneToone="oneToone" :allToone="allToone"></casMultiPanel>
+    <casMultiPanel @setCheckedData="childrenSelected = $event" @handleGetSelected="selectedData" v-if="children.length && !destroy" :data="children.length && children" :childrenCheckedData="childrenSelected" :componentId="componentId" :oneToone="oneToone" :allToone="allToone"></casMultiPanel>
 </div>
 </template>
 
@@ -27,6 +27,13 @@ export default {
     name: "casMultiPanel",
     props: {
         data: {
+            type: Array,
+            default () {
+                return [];
+            }
+        },
+        // 子级选中数据
+        childrenCheckedData: {
             type: Array,
             default () {
                 return [];
@@ -68,6 +75,9 @@ export default {
             }
         }
     },
+    mounted() {
+        this.handleCheckBoxChange(this.childrenCheckedData)
+    },
     methods: {
         // 获取选择项数据
         selectedData(val = []) {
@@ -84,8 +94,13 @@ export default {
         },
         //   防止时间冒泡到父组件handleClose事件
         handleCheckBoxClick() {},
+        // 处理数据排序问题，push带来的顺序跟原始数据可能会不一致问题异常
+        sortNumber(a, b) {
+            return a.parentId - b.parentId
+        },
         // checkGroup变更事件,返回已选中的数组
         handleCheckBoxChange(arr) {
+            this.checkBoxGroup = arr
             // 清空记录
             this.children = [];
             // 遍历选择的数据
@@ -102,9 +117,10 @@ export default {
                     }
                     // 记录数据并渲染到子组件
                     Array.prototype.push.apply(this.children, this.data[k].children);
-                    console.warn(this.children)
+                    this.children.sort(this.sortNumber)
                 }
             });
+            this.$emit("setCheckedData", arr);
             this.destroy = true;
             // 触发父组件emit
             this.selectedData();
@@ -117,7 +133,6 @@ export default {
                 for (let i = 1; i < this.data.length; i++) {
                     data.push(i);
                 }
-                console.log(data)
                 this.checkBoxGroup = data;
                 this.handleCheckBoxChange(data);
             } else {
