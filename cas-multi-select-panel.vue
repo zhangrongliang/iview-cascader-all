@@ -18,7 +18,7 @@
             </li>
         </CheckboxGroup>
     </ul>
-    <casMultiPanel @setCheckedData="childrenSelected = $event" @handleGetSelected="selectedData" v-if="children.length && !destroy" :data="children.length && children" :childrenCheckedData="childrenSelected" :componentId="componentId" :oneToone="oneToone" :allToone="allToone"></casMultiPanel>
+    <casMultiPanel @handleGetSelected="selectedData" v-if="children.length && !destroy" :data="children.length && children" :childrencheckedData="childrenSelected" :componentId="componentId" :oneToone="oneToone" :allToone="allToone"></casMultiPanel>
 </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
             }
         },
         // 子级选中数据
-        childrenCheckedData: {
+        childrencheckedData: {
             type: Array,
             default () {
                 return [];
@@ -73,22 +73,39 @@ export default {
                     this.destroy = false;
                 });
             }
+        },
+        checkBoxGroup(val, oldVal) {
+            if (val.length > oldVal.length) return
+            oldVal.map((vv, kk) => {
+                let type = false
+                val.map((v, k) => {
+                    if (v == vv) type = true
+                })
+                if (!type) {
+                    if (this.data && this.data.length && this.data[vv].children) {
+                        this.data[vv].children.map((dataVal, dataKey) => {
+                            dataVal.checked = false
+                        })
+                    }
+                }
+            })
         }
     },
     mounted() {
-        this.handleCheckBoxChange(this.childrenCheckedData)
+        // 当前组件数据选中状态赋值
+        let arr = []
+        this.data.map((val, key) => {
+            if (val.checked) arr.push(key)
+        })
+        this.handleCheckBoxChange(arr)
     },
     methods: {
         // 获取选择项数据
         selectedData(val = []) {
-            // 获取当前组件内选择的值
-            const arr = this.checkBoxGroup.map((v, k) => {
-                return {
-                    label: this.data[v].label,
-                    value: this.data[v].value,
-                    parentId: this.data[v].parentId,
-                };
-            });
+            let arr = []
+            this.data.map((val, key) => {
+                if (val.checked) arr.push(val)
+            })
             // 合并子组件传递的参数,并emit到父组件
             this.$emit("handleGetSelected", arr.concat(val));
         },
@@ -120,7 +137,15 @@ export default {
                     this.children.sort(this.sortNumber)
                 }
             });
-            this.$emit("setCheckedData", arr);
+
+            // 重置checked
+            this.data.map((val, key) => {
+                val.checked = false
+            })
+            this.checkBoxGroup.map((val, key) => {
+                this.data[val].checked = true
+            })
+
             this.destroy = true;
             // 触发父组件emit
             this.selectedData();

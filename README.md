@@ -108,7 +108,11 @@ export default {
 ![iview.png](https://github.com/zhangrongliang/iview-cascader-all/blob/master/3.png?raw=true)
 
 
+## 版本
+### 1.0.3
+- 修复全选N级选中切换BUG
+- 修复清除功能BUG
 
-##TODO
-1. 子级数据随父级消除而消除
-2. 一级全选
+### 1.0.2
+- 修复父级切换，子级数据未保存的问题
+- 修复父级数据切换，子级数据未排序问题

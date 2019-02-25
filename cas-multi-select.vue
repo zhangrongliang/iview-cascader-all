@@ -159,6 +159,7 @@ export default {
         // 清除选择项
         clearSelect() {
             if (this.disabled) return false;
+            this.handleFormatData(this.data);
             this.selectedData();
             this.handleClose();
             // 销毁组件
@@ -188,6 +189,7 @@ export default {
         handleFormatData(data, parentId) {
             return data.map((k, v) => {
                 k["parentId"] = parentId || 0;
+                k["checked"] = false;
                 if (k.children && k.children.length) {
                     k.children = this.handleFormatData(k.children, k.value);
                 }
