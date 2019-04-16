@@ -6,8 +6,13 @@
 1. 增加多选
 2. 增加全选
 
+## 下载模块[iview-cascader-all](https://www.npmjs.com/package/iview-cascader-all)
 
-# API
+```nodejs
+yarn add iview-cascader-all || npm i iview-cascader-all
+```
+
+## API
 | 属性         | 说明           | 类型     | 默认值 |
 |------------ | -------------  | --------|-------|
 | allToone    | 是否开启子级全选 | Boolean  | false  |
