@@ -1,7 +1,7 @@
 # iview-cascader-all
 从一组相关联的数据集合中进行选择，常用于省市区、公司级层、事务分类等。
 
-> 拓展[iviewui](https://www.iviewui.com/)的[cascader](https://www.iviewui.com/components/cascader)组件,[参考](https://zhangrongliang.com/views/iviewui/iview-cascader-all.html)。
+> 拓展[iviewui](https://www.iviewui.com/)的[cascader](https://www.iviewui.com/components/cascader)组件
 
 1. 增加多选
 2. 增加全选
